@@ -17,7 +17,7 @@ public class Player : Character
     [SerializeField, Tooltip("The transform that directly holds the weapon, NOT the transform for the weapon"), Header("Weapon Sway")] Transform weaponTransform;
     [SerializeField] Vector3 weaponSwayPositionScalar, weaponSwayRotationScalar;
     [SerializeField] AnimationCurve swayPositionBounceCurve, swayRotationBounceCurve;
-    [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier;
+    [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier, aimedSwayMultPos, aimedSwayMultRot, aimedSwayMultDamp;
     Vector3 weaponSwayPositionTarget, weaponSwayRotationTarget, maxWeaponSwayPosition, maxWeaponSwayRotation, weaponSwayPos, weaponSwayRot;
     Vector3 swayPosDampVelocity;
     float swayPositionReturn, swayRotationReturn;
@@ -71,8 +71,9 @@ public class Player : Character
         temporaryAimAngle = Vector3.Lerp(temporaryAimAngle, temporaryAimAngleTarget, Time.deltaTime * currentRecoilProfile.tempAimAngleDamp);
         aimTransform.localRotation = Quaternion.Euler(temporaryAimAngle + new Vector3(Mathf.Clamp(-lookAngle.y, -90, 90) + aimPitchOffset, 0, 0));
 
-        weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (weaponRecoilOrientation * recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
-   Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(weaponRecoilOrientation * recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
+        float aimInfluence = 1 - weaponManager.currentAimLerp;
+        weaponTransform.SetLocalPositionAndRotation(weaponSwayPos * (aimedSwayMultPos * aimInfluence)+ (weaponRecoilOrientation * recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
+   Quaternion.Euler(weaponSwayRot * (aimedSwayMultRot * aimInfluence)) * Quaternion.Euler(weaponRecoilOrientation * recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
     }
     private void LateUpdate()
     {
@@ -82,9 +83,13 @@ public class Player : Character
     }
     void WeaponSwayVisuals()
     {
-        weaponSwayPos = Vector3.SmoothDamp(weaponSwayPos, (weaponSwayPositionTarget * swayPositionMultiplier),
-            ref swayPosDampVelocity, swayPositionDamping);
-        weaponSwayRot = Vector3.LerpUnclamped(weaponSwayRot, weaponSwayRotationTarget * swayRotationMultiplier, Time.smoothDeltaTime * swayRotationDamping);
+
+        float aimInfluence = 1 - weaponManager.currentAimLerp;
+
+
+        weaponSwayPos = Vector3.SmoothDamp(weaponSwayPos * (aimInfluence * aimedSwayMultDamp), (weaponSwayPositionTarget * swayPositionMultiplier),
+            ref swayPosDampVelocity, swayPositionDamping * (aimInfluence * aimedSwayMultDamp));
+        weaponSwayRot = Vector3.LerpUnclamped(weaponSwayRot * (aimInfluence * aimedSwayMultDamp), weaponSwayRotationTarget * swayRotationMultiplier, Time.smoothDeltaTime * swayRotationDamping * (aimInfluence * aimedSwayMultDamp));
 
 
 
