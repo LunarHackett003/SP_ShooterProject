@@ -169,7 +169,7 @@ public class Player : Character
     {
         if (!IsAlive)
             return;
-        rb.drag = drag;
+        rb.linearDamping = drag;
         Move();
         RecoilMaths();
 

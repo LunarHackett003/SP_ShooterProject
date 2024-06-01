@@ -155,7 +155,6 @@ public class Weapon : MonoBehaviour
     int audiosourceIndex;
     private void FixedUpdate()
     {
-        audiosourceIndex = timesFired % fireAudioSources.Length;
         aimAmount = Mathf.MoveTowards(aimAmount, aimInput ? 1 : 0, aimSpeed * Time.fixedDeltaTime);
 
         //Cache our ability to fire at the start of the fixed update
@@ -282,13 +281,14 @@ public class Weapon : MonoBehaviour
             fireParticles.Play();
         if (fireAudioSources.Length > 0)
         {
+            fireAudioSources[audiosourceIndex].pitch = Random.Range(minMaxFirePitchVariance.x, minMaxFirePitchVariance.y);
+            fireAudioSources[audiosourceIndex].volume = fireVolume;
+
             if (!useLoopedSound)
             {
                 fireAudioSources[audiosourceIndex].Stop();
                 fireAudioSources[audiosourceIndex].time = 0;
             }
-            fireAudioSources[audiosourceIndex].volume = fireVolume;
-            fireAudioSources[audiosourceIndex].pitch = 1;
             if (timesFired == 0 && firstShotAudioClip)
             {
                 fireAudioSources[audiosourceIndex].PlayOneShot(firstShotAudioClip);
@@ -298,7 +298,12 @@ public class Weapon : MonoBehaviour
             else if (fireAudioClip && !useLoopedSound)
             {
                 fireAudioSources[audiosourceIndex].clip = fireAudioClip;
-                fireAudioSources[audiosourceIndex].pitch = Random.Range(minMaxFirePitchVariance.x, minMaxFirePitchVariance.y);
+                fireAudioSources[audiosourceIndex].Play();
+            }
+
+            if (lastShotAudioClip && currentAmmo == 1)
+            {
+                fireAudioSources[audiosourceIndex].clip = lastShotAudioClip;
                 fireAudioSources[audiosourceIndex].Play();
             }
         }
@@ -381,7 +386,8 @@ public class Weapon : MonoBehaviour
 
             wm.ReceiveRecoilImpulse(recPos, recRot);
         }
-
+        audiosourceIndex++;
+        audiosourceIndex %= fireAudioSources.Length;
     }
     IEnumerator BurstFire()
     {
