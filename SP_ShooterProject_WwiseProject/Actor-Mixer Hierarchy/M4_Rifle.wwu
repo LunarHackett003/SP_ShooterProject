@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{FCE01B1F-C3AB-4226-B260-40AC446A10B3}" SchemaVersion="119">
+	<AudioObjects>
+		<WorkUnit Name="M4_Rifle" ID="{FCE01B1F-C3AB-4226-B260-40AC446A10B3}" PersistMode="Standalone">
+			<ChildrenList>
+				<RandomSequenceContainer Name="m4_fire" ID="{CED2FE69-7D9E-4F77-BD09-41C974A0B579}" ShortID="401603522">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{8720CFA2-CABC-4BD8-890F-B9FDEC858E73}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{00AF4B39-7EF9-4632-84C8-7FD07F1322E7}"/>
+						</Reference>
+					</ReferenceList>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
