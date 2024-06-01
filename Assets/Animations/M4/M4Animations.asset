@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2936acf6e92272a48838bafa6e320a16, type: 3}
+  m_Name: M4Animations
+  m_EditorClassIdentifier: 
+  overrides:
+  - name: HipFire
+    overrideClip: {fileID: 7400000, guid: 309c54c7d2b209b47899fce455c4da2b, type: 2}
+  - name: HipIdle
+    overrideClip: {fileID: 7400000, guid: 12aa7b59946590645971915085715d7d, type: 2}
+  - name: QuickReloadHip
+    overrideClip: {fileID: 7400000, guid: 89bd5ac475b955940bb66408513f9215, type: 2}
+  - name: QuickReloadADS
+    overrideClip: {fileID: 7400000, guid: 162a51acf60789c4eb4d9913077e4593, type: 2}
+  - name: EmptyReloadADS
+    overrideClip: {fileID: 7400000, guid: a3efde013f63f6a4589eacdfeb6ab00d, type: 2}
+  - name: EmptyReloadHip
+    overrideClip: {fileID: 7400000, guid: 46db2e333ae9e654f89b48359c14d8a4, type: 2}
+  - name: ADSFire
+    overrideClip: {fileID: 7400000, guid: 6af209d82f8fdfc4989efe8239dcdd18, type: 2}
+  - name: EnterADS
+    overrideClip: {fileID: 7400000, guid: 6186033fd21fc154989e0485888b376b, type: 2}
+  - name: ExitADS
+    overrideClip: {fileID: 7400000, guid: f1129906ee1e3ce43b80cec39589304f, type: 2}
+  - name: ADSFire
+    overrideClip: {fileID: 7400000, guid: 6af209d82f8fdfc4989efe8239dcdd18, type: 2}
+  - name: ADSIdle
+    overrideClip: {fileID: 7400000, guid: b41392b46da06e94a9e06a5c3aeefc4f, type: 2}
+  - name: Equip
+    overrideClip: {fileID: 7400000, guid: e76cb2efe0646dd48a7b0cd874a07e66, type: 2}

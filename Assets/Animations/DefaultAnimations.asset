@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2936acf6e92272a48838bafa6e320a16, type: 3}
+  m_Name: DefaultAnimations
+  m_EditorClassIdentifier: 
+  overrides:
+  - name: HipFire
+    overrideClip: {fileID: 0}
+  - name: HipIdle
+    overrideClip: {fileID: 0}
+  - name: QuickReloadHip
+    overrideClip: {fileID: 0}
+  - name: QuickReloadADS
+    overrideClip: {fileID: 0}
+  - name: EmptyReloadADS
+    overrideClip: {fileID: 0}
+  - name: EmptyReloadHip
+    overrideClip: {fileID: 0}
+  - name: ADSFire
+    overrideClip: {fileID: 0}
+  - name: EnterADS
+    overrideClip: {fileID: 0}
+  - name: ExitADS
+    overrideClip: {fileID: 0}
+  - name: ADSFire
+    overrideClip: {fileID: 0}
+  - name: ADSIdle
+    overrideClip: {fileID: 0}
+  - name: Equip
+    overrideClip: {fileID: 0}
